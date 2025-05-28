@@ -14,11 +14,10 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var list<string>
      */
     protected $fillable = [
-        'nama',
+        'name',
         'email',
         'password',
         'role',
@@ -28,16 +27,6 @@ class User extends Authenticatable
         'no_rm',
         'poli',
     ];
-
-    public function jadwalPeriksas()
-    {
-        return $this->hasMany(JadwalPeriksa::class, 'id_dokter');
-    }
-
-    public function janjiPeriksas()
-    {
-        return $this->hasMany(JanjiPeriksa::class, 'id_pasien');
-    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -60,5 +49,15 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function jadwalPeriksas()
+    {
+        return $this->hasMany(JadwalPeriksa::class, 'id_dokter');
+    }
+
+    public function janjiPeriksas()
+    {
+        return $this->hasMany(JanjiPeriksa::class, 'id_pasien');
     }
 }
