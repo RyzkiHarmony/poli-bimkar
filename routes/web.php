@@ -12,13 +12,17 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('dokter/dashboard', function () {
-    return view('dokter.index');
-})->name('dokter.dashboard')->middleware(['auth', 'verified', RoleMiddleware::class . ':dokter']);
+Route::middleware(['auth', 'role:dokter'])->prefix('dokter')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dokter.dashboard');
+    })->name('dokter.dashboard');
+});
 
-Route::get('pasien/dashboard', function () {
-    return view('pasien.index');
-})->name('pasien.dashboard')->middleware(['auth', 'verified', RoleMiddleware::class . ':pasien']);
+Route::middleware(['auth', 'role:pasien'])->prefix('pasien')->group(function () {
+    Route::get('/dashboard', function () {
+        return view('pasien.dashboard');
+    })->name('pasien.dashboard');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

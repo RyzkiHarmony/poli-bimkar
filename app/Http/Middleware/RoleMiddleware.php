@@ -19,7 +19,7 @@ class RoleMiddleware
         $user = Auth::user();
 
         if ($user->role !== $role) {
-            return response('Authorization Denied', 401);
+            return response('Unauthorized', 403);
         }
 
         return $next($request);
