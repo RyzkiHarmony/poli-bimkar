@@ -27,6 +27,7 @@ class PeriksaSeeder extends Seeder
 
         foreach ($data as $item) {
             Periksa::create($item);
+            
         }
     }
 }
