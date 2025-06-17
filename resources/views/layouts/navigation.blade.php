@@ -36,6 +36,10 @@
                         :active="request()->routeIs('pasien.janji-periksa.index')">
                         {{ __('Janji Periksa') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('pasien.riwayat-periksa.index')"
+                        :active="request()->routeIs('pasien.riwayat-periksa.index')">
+                        {{ __('Riwayat Periksa') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>

@@ -14,6 +14,7 @@ class Obat extends Model
         'nama_obat',
         'kemasan',
         'harga',
+        'deleted',
     ];
 
     public function detailPeriksas(): HasMany

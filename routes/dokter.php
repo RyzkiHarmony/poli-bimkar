@@ -12,10 +12,12 @@ Route::middleware(['auth', 'role:dokter'])->prefix('dokter')->group(function () 
     Route::prefix('obat')->group(function () {
         Route::get('/', [ObatController::class, 'index'])->name('dokter.obat.index');
         Route::get('/create', [ObatController::class, 'create'])->name('dokter.obat.create');
+        Route::get('/restore', [ObatController::class, 'restore'])->name('dokter.obat.restore');
         Route::post('/', [ObatController::class, 'store'])->name('dokter.obat.store');
         Route::get('/{id}/edit', [ObatController::class, 'edit'])->name('dokter.obat.edit');
         Route::patch('/{id}', [ObatController::class, 'update'])->name('dokter.obat.update');
         Route::delete('/{id}', [ObatController::class, 'destroy'])->name('dokter.obat.destroy');
+        Route::patch('/{id}/soft-delete', [ObatController::class, 'softdestroy'])->name('dokter.obat.softdestroy');
     });
 
     Route::prefix('JadwalPeriksa')->group(function () {

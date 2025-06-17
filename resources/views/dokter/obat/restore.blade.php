@@ -11,11 +11,10 @@
                 <section>
                     <header class="flex items-center justify-between">
                         <h2 class="text-lg font-medium text-gray-900">
-                            {{ __('Daftar Obat') }}
+                            {{ __('Daftar Obat Terhapus') }}
                         </h2>
                         <div class="flex-col items-center justify-center text-center">
-                            <a href="{{ route('dokter.obat.create') }}" class="btn btn-primary">Tambah Obat</a>
-                            <a href="{{ route('dokter.obat.restore') }}" class="btn btn-warning">Pulihkan Obat</a>
+                            <a href="{{ route('dokter.obat.index') }}" class="btn btn-primary">Daftar Obat</a>
 
                             @if (session('status') === 'obat-created')
                             <p x-data="{ show: true }" x-show="show" x-transition
@@ -52,17 +51,20 @@
                                     {{ 'Rp' . number_format($obat->harga, 0, ',', '.') }}
                                 </td>
                                 <td class="flex items-center gap-3">
-                                    {{-- Button Edit --}}
-                                    <a href="{{ route('dokter.obat.edit', $obat->id) }}" class="btn btn-warning btn-sm">
-                                        Edit
-                                    </a>
-
                                     {{-- Button Delete --}}
                                     <form action="{{ route('dokter.obat.softdestroy', $obat->id) }}" method="POST">
                                         @csrf
                                         @method('PATCH')
+                                        <button type="submit" class="btn btn-warning btn-sm">
+                                            Restore
+                                        </button>
+                                    </form>
+
+                                    <form action="{{ route('dokter.obat.destroy', $obat->id) }}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm">
-                                            Delete
+                                            Delete Permanent
                                         </button>
                                     </form>
                                 </td>

@@ -5,12 +5,13 @@ namespace App\Http\Controllers\Dokter;
 use App\Http\Controllers\Controller;
 use App\Models\Obat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ObatController extends Controller
 {
     public function index()
     {
-        $obats = Obat::all();
+        $obats = Obat::where("deleted",false)->get();
         return view('dokter.obat.index')->with([
             'obats' => $obats,
         ]);
@@ -19,6 +20,14 @@ class ObatController extends Controller
     public function create()
     {
         return view('dokter.obat.create');
+    }
+
+    public function restore()
+    {
+        $obats = Obat::where("deleted",true)->get();
+        return view('dokter.obat.restore')->with([
+            'obats' => $obats,
+        ]);
     }
 
     public function edit($id)
@@ -63,12 +72,29 @@ class ObatController extends Controller
 
         return redirect()->route('dokter.obat.index')->with('status', 'obat-updated');
     }
-
     public function destroy($id)
     {
         $obat = Obat::find($id);
         $obat->delete();
 
-        return redirect()->route('dokter.obat.index');
+        return redirect()->route('dokter.obat.restore');
+    }
+    
+    public function softdestroy($id)
+    {
+        $obat = Obat::findOrFail($id);
+
+        if (!$obat->deleted) {
+
+            $obat->deleted = 1;
+            $obat->save();
+
+            return redirect()->route('dokter.obat.index');
+        }
+
+        $obat->deleted = 0;
+        $obat->save();
+
+        return redirect()->route('dokter.obat.restore');
     }
 }

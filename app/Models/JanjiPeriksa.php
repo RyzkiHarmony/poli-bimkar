@@ -23,12 +23,12 @@ class JanjiPeriksa extends Model
         return $this->belongsTo(User::class, 'id_pasien');
     }
 
-    public function jadwalPeriksas(): BelongsTo
+    public function jadwalPeriksa(): BelongsTo
     {
         return $this->belongsTo(JadwalPeriksa::class, 'id_jadwal_periksa');
     }
 
-    public function periksas(): HasOne
+    public function periksa(): HasOne
     {
         return $this->hasOne(Periksa::class, 'id_janji_periksa');
     }
