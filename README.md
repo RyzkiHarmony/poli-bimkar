@@ -1,66 +1,205 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Sistem Manajemen Poliklinik (Poli-Bimkar)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Sistem manajemen poliklinik berbasis web yang dibangun menggunakan Laravel 12 untuk mengelola operasional klinik, termasuk manajemen dokter, pasien, jadwal pemeriksaan, dan obat-obatan.
 
-## About Laravel
+## 🚀 Fitur Utama
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### 👨‍⚕️ Panel Dokter
+- **Dashboard Dokter** - Overview aktivitas dan statistik
+- **Manajemen Obat** - CRUD obat dengan soft delete dan restore
+- **Jadwal Pemeriksaan** - Pengaturan jadwal praktek dokter
+- **Pemeriksaan Pasien** - Proses pemeriksaan dan pencatatan hasil
+- **Riwayat Pemeriksaan** - Melihat detail riwayat pemeriksaan pasien
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### 👥 Panel Pasien
+- **Dashboard Pasien** - Informasi personal dan aktivitas
+- **Janji Pemeriksaan** - Membuat janji temu dengan dokter
+- **Riwayat Pemeriksaan** - Melihat riwayat dan detail pemeriksaan
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🔐 Sistem Autentikasi
+- Multi-role authentication (Dokter & Pasien)
+- Profile management
+- Role-based access control
 
-## Learning Laravel
+## 🛠️ Teknologi yang Digunakan
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- **Backend**: Laravel 12 (PHP 8.2+)
+- **Frontend**: Blade Templates, Alpine.js, Tailwind CSS
+- **Database**: MySQL/SQLite
+- **Authentication**: Laravel Breeze
+- **Build Tools**: Vite
+- **Testing**: Pest PHP
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 📋 Persyaratan Sistem
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- PHP >= 8.2
+- Composer
+- Node.js & NPM
+- MySQL/SQLite
+- Web Server (Apache/Nginx)
 
-## Laravel Sponsors
+## 🚀 Instalasi
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 1. Clone Repository
+```bash
+git clone <repository-url>
+cd poli-bimkar
+```
 
-### Premium Partners
+### 2. Install Dependencies
+```bash
+# Install PHP dependencies
+composer install
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+# Install Node.js dependencies
+npm install
+```
 
-## Contributing
+### 3. Environment Setup
+```bash
+# Copy environment file
+cp .env.example .env
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Generate application key
+php artisan key:generate
+```
 
-## Code of Conduct
+### 4. Database Configuration
+Edit file `.env` dan sesuaikan konfigurasi database:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=poli_bimkar
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 5. Database Migration & Seeding
+```bash
+# Run migrations
+php artisan migrate
 
-## Security Vulnerabilities
+# Run seeders (optional)
+php artisan db:seed
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 6. Build Assets
+```bash
+# Development
+npm run dev
 
-## License
+# Production
+npm run build
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 7. Start Development Server
+```bash
+php artisan serve
+```
+
+Aplikasi akan berjalan di `http://localhost:8000`
+
+## 📊 Struktur Database
+
+### Tabel Utama
+- **users** - Data pengguna (dokter & pasien)
+- **polis** - Data poliklinik
+- **obats** - Data obat-obatan
+- **jadwal_periksas** - Jadwal praktek dokter
+- **janji_periksas** - Janji temu pasien
+- **periksas** - Data pemeriksaan
+- **detail_periksas** - Detail obat yang diberikan
+
+### Relasi Database
+- User (Dokter) → belongsTo → Poli
+- JadwalPeriksa → belongsTo → User (Dokter)
+- JanjiPeriksa → belongsTo → User (Pasien) & JadwalPeriksa
+- Periksa → belongsTo → JanjiPeriksa
+- DetailPeriksa → belongsTo → Periksa & Obat
+
+## 🎯 Penggunaan
+
+### Login sebagai Dokter
+1. Akses halaman login
+2. Masuk dengan kredensial dokter
+3. Kelola jadwal pemeriksaan
+4. Lakukan pemeriksaan pasien
+5. Kelola data obat
+
+### Login sebagai Pasien
+1. Akses halaman login
+2. Masuk dengan kredensial pasien
+3. Buat janji pemeriksaan
+4. Lihat riwayat pemeriksaan
+
+## 🧪 Testing
+
+```bash
+# Run all tests
+php artisan test
+
+# Run specific test
+php artisan test --filter=ExampleTest
+```
+
+## 📁 Struktur Project
+
+```
+poli-bimkar/
+├── app/
+│   ├── Http/Controllers/
+│   │   ├── Dokter/          # Controllers untuk dokter
+│   │   └── Pasien/          # Controllers untuk pasien
+│   ├── Models/              # Eloquent models
+│   └── Middleware/          # Custom middleware
+├── database/
+│   ├── migrations/          # Database migrations
+│   └── seeders/            # Database seeders
+├── resources/
+│   └── views/
+│       ├── dokter/         # Views untuk dokter
+│       ├── pasien/         # Views untuk pasien
+│       └── layouts/        # Layout templates
+├── routes/
+│   ├── web.php            # Web routes
+│   ├── dokter.php         # Dokter routes
+│   └── pasien.php         # Pasien routes
+└── public/                # Public assets
+```
+
+## 🔧 Konfigurasi
+
+### Role Management
+Sistem menggunakan role-based access dengan middleware:
+- `role:dokter` - Akses khusus dokter
+- `role:pasien` - Akses khusus pasien
+
+### Middleware
+- `auth` - Autentikasi pengguna
+- `role` - Otorisasi berdasarkan role
+
+## 🤝 Kontribusi
+
+1. Fork repository
+2. Buat feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buat Pull Request
+
+## 📝 License
+
+Project ini menggunakan [MIT License](https://opensource.org/licenses/MIT).
+
+## 👥 Tim Pengembang
+
+- **Developer**: [Nama Developer]
+- **Project**: Tugas Kuliah SMT 6 - Bimbingan Karir
+
+## 📞 Support
+
+Jika mengalami masalah atau memiliki pertanyaan, silakan buat issue di repository ini.
+
+---
+
+**Catatan**: Project ini dikembangkan untuk keperluan akademik dalam rangka tugas kuliah Semester 6 Bimbingan Karir.
