@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Dokter\JadwalPeriksaController;
+use App\Http\Controllers\Dokter\MemeriksaController;
 use App\Http\Controllers\Dokter\ObatController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,5 +26,13 @@ Route::middleware(['auth', 'role:dokter'])->prefix('dokter')->group(function () 
         Route::get('/create', [JadwalPeriksaController::class, 'create'])->name('dokter.jadwalPeriksa.create');
         Route::post('/', [JadwalPeriksaController::class, 'store'])->name('dokter.jadwalPeriksa.store');
         Route::patch('/{id}', [JadwalPeriksaController::class, 'update'])->name('dokter.jadwalPeriksa.update');
+    });
+    
+    Route::prefix('Memeriksa')->group(function () {
+        Route::get('/', [MemeriksaController::class, 'index'])->name('dokter.memeriksa.index');
+        Route::get('/create/{id}', [MemeriksaController::class, 'create'])->name('dokter.memeriksa.create');
+        Route::post('/store', [MemeriksaController::class, 'store'])->name('dokter.memeriksa.store');
+        Route::get('/history', [MemeriksaController::class, 'history'])->name('dokter.memeriksa.history');
+        Route::get('/detail/{id}', [MemeriksaController::class, 'detail'])->name('dokter.memeriksa.detail');
     });
 });

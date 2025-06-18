@@ -32,14 +32,14 @@
                                 <select class="form-control" id="dokterSelect" name="id_jadwal_periksa" required>
                                     <option>Pilih Dokter</option>
                                     @foreach ($dokters as $dokter)
-                                        <!-- asdasdasdas -->
-                                        @foreach ($dokter->jadwalPeriksas as $jadwal)
-                                            <option value="{{ $jadwal->id }}"> {{ $dokter->name }} - Poli :
-                                                {{ $dokter->poli }} | {{ $jadwal->hari }},
-                                                {{ $jadwal->jam_mulai }} -
-                                                {{ $jadwal->jam_selesai }}
-                                            </option>
-                                        @endforeach
+                                    <!-- asdasdasdas -->
+                                    @foreach ($dokter->jadwalPeriksas as $jadwal)
+                                    <option value="{{ $jadwal->id }}"> {{ $dokter->name }} - Poli :
+                                        {{ $dokter->poli->nama_poli }} | {{ $jadwal->hari }},
+                                        {{ $jadwal->jam_mulai }} -
+                                        {{ $jadwal->jam_selesai }}
+                                    </option>
+                                    @endforeach
                                     @endforeach
                                 </select>
                             </div>
@@ -51,10 +51,10 @@
                                 <button type="submit" class="btn btn-primary">Submit</button>
 
                                 @if (session('status') === 'janji-periksa-created')
-                                    <p x-data="{ show: true }" x-show="show" x-transition
-                                        x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">
-                                        {{ __('Berhasil Dibuat.') }}
-                                    </p>
+                                <p x-data="{ show: true }" x-show="show" x-transition
+                                    x-init="setTimeout(() => show = false, 2000)" class="text-sm text-gray-600">
+                                    {{ __('Berhasil Dibuat.') }}
+                                </p>
                                 @endif
                             </div>
                         </form>

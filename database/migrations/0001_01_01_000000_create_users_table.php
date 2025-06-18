@@ -22,9 +22,11 @@ return new class extends Migration {
             $table->string('no_ktp')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('no_rm')->nullable();
-            $table->string('poli')->nullable();
+            $table->unsignedBigInteger('id_poli')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            
+            $table->foreign('id_poli')->references('id')->on('polis')->onDelete('cascade');
 
         });
 

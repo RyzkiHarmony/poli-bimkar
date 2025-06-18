@@ -28,6 +28,17 @@
                         :active="request()->routeIs('dokter.jadwalPeriksa.index')">
                         {{ __('Jadwal Periksa') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('dokter.memeriksa.index')"
+                        :active="request()->routeIs('dokter.memeriksa.index')">
+                        {{ __('Periksa Pasien') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('dokter.memeriksa.history')"
+                        :active="request()->routeIs('dokter.memeriksa.history')">
+                        {{ __('Riwayat Pasien') }}
+                    </x-nav-link>
+
                     @elseif(Auth::user()->role == 'pasien')
                     <x-nav-link :href="route('pasien.dashboard')" :active="request()->routeIs('pasien.dashboard')">
                         {{ __('Dashboard') }}

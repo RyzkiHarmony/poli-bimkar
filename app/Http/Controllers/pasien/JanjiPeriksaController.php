@@ -18,6 +18,7 @@ class JanjiPeriksaController extends Controller
             'jadwalPeriksas' => function ($query) {
                 $query->where('status', true);
             },
+            'poli'
         ])
             ->where('role', 'dokter')
             ->get();
